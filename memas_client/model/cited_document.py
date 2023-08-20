@@ -3,7 +3,7 @@
 """
     MeMaS DP APIs
 
-    This is the Data Plane APIs for MeMaS (Memory Management Service).  # noqa: E501
+    This is the Data Plane client for MeMaS (Memory Management Service).  See https://github.com/memas-ai/MeMaS for more details.  # noqa: E501
 
     The version of the OpenAPI document: 0.1.0
     Contact: max.yu@memas.ai
@@ -35,6 +35,10 @@ class CitedDocument(
 
 
     class MetaOapg:
+        required = {
+            "citation",
+            "document",
+        }
         
         class properties:
             document = schemas.StrSchema
@@ -46,6 +50,9 @@ class CitedDocument(
                 "document": document,
                 "citation": citation,
             }
+    
+    citation: 'Citation'
+    document: MetaOapg.properties.document
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["document"]) -> MetaOapg.properties.document: ...
@@ -62,10 +69,10 @@ class CitedDocument(
     
     
     @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["document"]) -> typing.Union[MetaOapg.properties.document, schemas.Unset]: ...
+    def get_item_oapg(self, name: typing_extensions.Literal["document"]) -> MetaOapg.properties.document: ...
     
     @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["citation"]) -> typing.Union['Citation', schemas.Unset]: ...
+    def get_item_oapg(self, name: typing_extensions.Literal["citation"]) -> 'Citation': ...
     
     @typing.overload
     def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
@@ -77,16 +84,16 @@ class CitedDocument(
     def __new__(
         cls,
         *_args: typing.Union[dict, frozendict.frozendict, ],
-        document: typing.Union[MetaOapg.properties.document, str, schemas.Unset] = schemas.unset,
-        citation: typing.Union['Citation', schemas.Unset] = schemas.unset,
+        citation: 'Citation',
+        document: typing.Union[MetaOapg.properties.document, str, ],
         _configuration: typing.Optional[schemas.Configuration] = None,
         **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
     ) -> 'CitedDocument':
         return super().__new__(
             cls,
             *_args,
-            document=document,
             citation=citation,
+            document=document,
             _configuration=_configuration,
             **kwargs,
         )
