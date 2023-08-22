@@ -27,8 +27,6 @@ from memas_client import schemas  # noqa: F401
 
 from memas_client.model.cited_document import CitedDocument
 
-from . import path
-
 # body param
 
 
@@ -150,9 +148,6 @@ _response_for_200 = api_client.OpenApiResponse(
             schema=SchemaFor200ResponseBodyApplicationJson),
     },
 )
-_status_code_to_response = {
-    '200': _response_for_200,
-}
 _all_accept_content_types = (
     'application/json',
 )
@@ -160,7 +155,7 @@ _all_accept_content_types = (
 
 class BaseApi(api_client.Api):
     @typing.overload
-    def _recollect_oapg(
+    def _recall_oapg(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
         content_type: typing_extensions.Literal["application/json"] = ...,
@@ -173,7 +168,7 @@ class BaseApi(api_client.Api):
     ]: ...
 
     @typing.overload
-    def _recollect_oapg(
+    def _recall_oapg(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
         content_type: str = ...,
@@ -187,7 +182,7 @@ class BaseApi(api_client.Api):
 
 
     @typing.overload
-    def _recollect_oapg(
+    def _recall_oapg(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
         skip_deserialization: typing_extensions.Literal[True],
@@ -198,7 +193,7 @@ class BaseApi(api_client.Api):
     ) -> api_client.ApiResponseWithoutDeserialization: ...
 
     @typing.overload
-    def _recollect_oapg(
+    def _recall_oapg(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
         content_type: str = ...,
@@ -211,7 +206,7 @@ class BaseApi(api_client.Api):
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
-    def _recollect_oapg(
+    def _recall_oapg(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
         content_type: str = 'application/json',
@@ -221,7 +216,7 @@ class BaseApi(api_client.Api):
         skip_deserialization: bool = False,
     ):
         """
-        Recollects
+        Recalls information
         :param skip_deserialization: If true then api_response.response will be set but
             api_response.body and api_response.headers will not be deserialized into schema
             class instances
@@ -274,11 +269,11 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-class Recollect(BaseApi):
+class Recall(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
     @typing.overload
-    def recollect(
+    def recall(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
         content_type: typing_extensions.Literal["application/json"] = ...,
@@ -291,7 +286,7 @@ class Recollect(BaseApi):
     ]: ...
 
     @typing.overload
-    def recollect(
+    def recall(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
         content_type: str = ...,
@@ -305,7 +300,7 @@ class Recollect(BaseApi):
 
 
     @typing.overload
-    def recollect(
+    def recall(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
         skip_deserialization: typing_extensions.Literal[True],
@@ -316,7 +311,7 @@ class Recollect(BaseApi):
     ) -> api_client.ApiResponseWithoutDeserialization: ...
 
     @typing.overload
-    def recollect(
+    def recall(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
         content_type: str = ...,
@@ -329,7 +324,7 @@ class Recollect(BaseApi):
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
-    def recollect(
+    def recall(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
         content_type: str = 'application/json',
@@ -338,7 +333,7 @@ class Recollect(BaseApi):
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
-        return self._recollect_oapg(
+        return self._recall_oapg(
             body=body,
             content_type=content_type,
             accept_content_types=accept_content_types,
@@ -412,7 +407,7 @@ class ApiForpost(BaseApi):
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
-        return self._recollect_oapg(
+        return self._recall_oapg(
             body=body,
             content_type=content_type,
             accept_content_types=accept_content_types,

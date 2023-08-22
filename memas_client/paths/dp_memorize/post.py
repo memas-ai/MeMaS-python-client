@@ -27,6 +27,8 @@ from memas_client import schemas  # noqa: F401
 
 from memas_client.model.cited_document import CitedDocument
 
+from . import path
+
 # body param
 
 
@@ -223,6 +225,9 @@ _response_for_200 = api_client.OpenApiResponse(
             schema=SchemaFor200ResponseBodyApplicationJson),
     },
 )
+_status_code_to_response = {
+    '200': _response_for_200,
+}
 _all_accept_content_types = (
     'application/json',
 )
@@ -230,7 +235,7 @@ _all_accept_content_types = (
 
 class BaseApi(api_client.Api):
     @typing.overload
-    def _remember_oapg(
+    def _memorize_oapg(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: typing_extensions.Literal["application/json"] = ...,
@@ -243,7 +248,7 @@ class BaseApi(api_client.Api):
     ]: ...
 
     @typing.overload
-    def _remember_oapg(
+    def _memorize_oapg(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: str = ...,
@@ -257,7 +262,7 @@ class BaseApi(api_client.Api):
 
 
     @typing.overload
-    def _remember_oapg(
+    def _memorize_oapg(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         skip_deserialization: typing_extensions.Literal[True],
@@ -268,7 +273,7 @@ class BaseApi(api_client.Api):
     ) -> api_client.ApiResponseWithoutDeserialization: ...
 
     @typing.overload
-    def _remember_oapg(
+    def _memorize_oapg(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: str = ...,
@@ -281,7 +286,7 @@ class BaseApi(api_client.Api):
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
-    def _remember_oapg(
+    def _memorize_oapg(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: str = 'application/json',
@@ -344,11 +349,11 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-class Remember(BaseApi):
+class Memorize(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
     @typing.overload
-    def remember(
+    def memorize(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: typing_extensions.Literal["application/json"] = ...,
@@ -361,7 +366,7 @@ class Remember(BaseApi):
     ]: ...
 
     @typing.overload
-    def remember(
+    def memorize(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: str = ...,
@@ -375,7 +380,7 @@ class Remember(BaseApi):
 
 
     @typing.overload
-    def remember(
+    def memorize(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         skip_deserialization: typing_extensions.Literal[True],
@@ -386,7 +391,7 @@ class Remember(BaseApi):
     ) -> api_client.ApiResponseWithoutDeserialization: ...
 
     @typing.overload
-    def remember(
+    def memorize(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: str = ...,
@@ -399,7 +404,7 @@ class Remember(BaseApi):
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
-    def remember(
+    def memorize(
         self,
         body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: str = 'application/json',
@@ -408,7 +413,7 @@ class Remember(BaseApi):
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
-        return self._remember_oapg(
+        return self._memorize_oapg(
             body=body,
             content_type=content_type,
             accept_content_types=accept_content_types,
@@ -482,7 +487,7 @@ class ApiForpost(BaseApi):
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
-        return self._remember_oapg(
+        return self._memorize_oapg(
             body=body,
             content_type=content_type,
             accept_content_types=accept_content_types,

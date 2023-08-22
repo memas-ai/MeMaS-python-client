@@ -12,15 +12,15 @@ from unittest.mock import patch
 import urllib3
 
 import memas_client
-from memas_client.paths.dp_remember import post  # noqa: E501
+from memas_client.paths.dp_memorize import post  # noqa: E501
 from memas_client import configuration, schemas, api_client
 
 from .. import ApiTestMixin
 
 
-class TestDpRemember(ApiTestMixin, unittest.TestCase):
+class TestDpMemorize(ApiTestMixin, unittest.TestCase):
     """
-    DpRemember unit test stubs
+    DpMemorize unit test stubs
         Memorize information  # noqa: E501
     """
     _configuration = configuration.Configuration()

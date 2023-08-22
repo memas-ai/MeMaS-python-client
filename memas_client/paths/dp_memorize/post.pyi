@@ -31,67 +31,118 @@ from memas_client.model.cited_document import CitedDocument
 
 
 class SchemaForRequestBodyApplicationJson(
-    schemas.DictSchema
+    schemas.ComposedSchema,
 ):
 
 
     class MetaOapg:
-        required = {
-            "clue",
-            "corpus_pathname",
-        }
+        all_of_1 = schemas.DictSchema
         
-        class properties:
-            clue = schemas.StrSchema
-            corpus_pathname = schemas.StrSchema
-            __annotations__ = {
-                "clue": clue,
-                "corpus_pathname": corpus_pathname,
-            }
-    
-    clue: MetaOapg.properties.clue
-    corpus_pathname: MetaOapg.properties.corpus_pathname
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["clue"]) -> MetaOapg.properties.clue: ...
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["corpus_pathname"]) -> MetaOapg.properties.corpus_pathname: ...
-    
-    @typing.overload
-    def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
-    
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["clue", "corpus_pathname", ], str]):
-        # dict_instance[name] accessor
-        return super().__getitem__(name)
-    
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["clue"]) -> MetaOapg.properties.clue: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["corpus_pathname"]) -> MetaOapg.properties.corpus_pathname: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
-    
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["clue", "corpus_pathname", ], str]):
-        return super().get_item_oapg(name)
-    
+        
+        class all_of_2(
+            schemas.AnyTypeSchema,
+        ):
+        
+        
+            class MetaOapg:
+                required = {
+                    "corpus_pathname",
+                }
+        
+            
+            corpus_pathname: schemas.AnyTypeSchema
+        
+            def __new__(
+                cls,
+                *_args: typing.Union[dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
+                _configuration: typing.Optional[schemas.Configuration] = None,
+                **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
+            ) -> 'all_of_2':
+                return super().__new__(
+                    cls,
+                    *_args,
+                    _configuration=_configuration,
+                    **kwargs,
+                )
+        
+        
+        class all_of_3(
+            schemas.AnyTypeSchema,
+        ):
+        
+        
+            class MetaOapg:
+                
+                class properties:
+                    corpus_pathname = schemas.StrSchema
+                    __annotations__ = {
+                        "corpus_pathname": corpus_pathname,
+                    }
+        
+            
+            @typing.overload
+            def __getitem__(self, name: typing_extensions.Literal["corpus_pathname"]) -> MetaOapg.properties.corpus_pathname: ...
+            
+            @typing.overload
+            def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
+            
+            def __getitem__(self, name: typing.Union[typing_extensions.Literal["corpus_pathname", ], str]):
+                # dict_instance[name] accessor
+                return super().__getitem__(name)
+            
+            
+            @typing.overload
+            def get_item_oapg(self, name: typing_extensions.Literal["corpus_pathname"]) -> typing.Union[MetaOapg.properties.corpus_pathname, schemas.Unset]: ...
+            
+            @typing.overload
+            def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
+            
+            def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["corpus_pathname", ], str]):
+                return super().get_item_oapg(name)
+            
+        
+            def __new__(
+                cls,
+                *_args: typing.Union[dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
+                corpus_pathname: typing.Union[MetaOapg.properties.corpus_pathname, str, schemas.Unset] = schemas.unset,
+                _configuration: typing.Optional[schemas.Configuration] = None,
+                **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
+            ) -> 'all_of_3':
+                return super().__new__(
+                    cls,
+                    *_args,
+                    corpus_pathname=corpus_pathname,
+                    _configuration=_configuration,
+                    **kwargs,
+                )
+        
+        @classmethod
+        @functools.lru_cache()
+        def all_of(cls):
+            # we need this here to make our import statements work
+            # we must store _composed_schemas in here so the code is only run
+            # when we invoke this method. If we kept this at the class
+            # level we would get an error because the class level
+            # code would be run when this module is imported, and these composed
+            # classes don't exist yet because their module has not finished
+            # loading
+            return [
+                CitedDocument,
+                cls.all_of_1,
+                cls.all_of_2,
+                cls.all_of_3,
+            ]
+
 
     def __new__(
         cls,
-        *_args: typing.Union[dict, frozendict.frozendict, ],
-        clue: typing.Union[MetaOapg.properties.clue, str, ],
-        corpus_pathname: typing.Union[MetaOapg.properties.corpus_pathname, str, ],
+        *_args: typing.Union[dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         _configuration: typing.Optional[schemas.Configuration] = None,
         **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
     ) -> 'SchemaForRequestBodyApplicationJson':
         return super().__new__(
             cls,
             *_args,
-            clue=clue,
-            corpus_pathname=corpus_pathname,
             _configuration=_configuration,
             **kwargs,
         )
@@ -107,29 +158,53 @@ request_body_any_type = api_client.RequestBody(
 
 
 class SchemaFor200ResponseBodyApplicationJson(
-    schemas.ListSchema
+    schemas.DictSchema
 ):
 
 
     class MetaOapg:
         
-        @staticmethod
-        def items() -> typing.Type['CitedDocument']:
-            return CitedDocument
+        class properties:
+            success = schemas.BoolSchema
+            __annotations__ = {
+                "success": success,
+            }
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["success"]) -> MetaOapg.properties.success: ...
+    
+    @typing.overload
+    def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
+    
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["success", ], str]):
+        # dict_instance[name] accessor
+        return super().__getitem__(name)
+    
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["success"]) -> typing.Union[MetaOapg.properties.success, schemas.Unset]: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
+    
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["success", ], str]):
+        return super().get_item_oapg(name)
+    
 
     def __new__(
         cls,
-        _arg: typing.Union[typing.Tuple['CitedDocument'], typing.List['CitedDocument']],
+        *_args: typing.Union[dict, frozendict.frozendict, ],
+        success: typing.Union[MetaOapg.properties.success, bool, schemas.Unset] = schemas.unset,
         _configuration: typing.Optional[schemas.Configuration] = None,
+        **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
     ) -> 'SchemaFor200ResponseBodyApplicationJson':
         return super().__new__(
             cls,
-            _arg,
+            *_args,
+            success=success,
             _configuration=_configuration,
+            **kwargs,
         )
-
-    def __getitem__(self, i: int) -> 'CitedDocument':
-        return super().__getitem__(i)
 
 
 @dataclass
@@ -155,9 +230,9 @@ _all_accept_content_types = (
 
 class BaseApi(api_client.Api):
     @typing.overload
-    def _recollect_oapg(
+    def _memorize_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
+        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: typing_extensions.Literal["application/json"] = ...,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -168,9 +243,9 @@ class BaseApi(api_client.Api):
     ]: ...
 
     @typing.overload
-    def _recollect_oapg(
+    def _memorize_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
+        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: str = ...,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -182,9 +257,9 @@ class BaseApi(api_client.Api):
 
 
     @typing.overload
-    def _recollect_oapg(
+    def _memorize_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
+        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -193,9 +268,9 @@ class BaseApi(api_client.Api):
     ) -> api_client.ApiResponseWithoutDeserialization: ...
 
     @typing.overload
-    def _recollect_oapg(
+    def _memorize_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
+        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: str = ...,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -206,9 +281,9 @@ class BaseApi(api_client.Api):
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
-    def _recollect_oapg(
+    def _memorize_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
+        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: str = 'application/json',
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -216,7 +291,7 @@ class BaseApi(api_client.Api):
         skip_deserialization: bool = False,
     ):
         """
-        Recollects
+        Memorize information
         :param skip_deserialization: If true then api_response.response will be set but
             api_response.body and api_response.headers will not be deserialized into schema
             class instances
@@ -269,13 +344,13 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-class Recollect(BaseApi):
+class Memorize(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
     @typing.overload
-    def recollect(
+    def memorize(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
+        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: typing_extensions.Literal["application/json"] = ...,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -286,9 +361,9 @@ class Recollect(BaseApi):
     ]: ...
 
     @typing.overload
-    def recollect(
+    def memorize(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
+        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: str = ...,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -300,9 +375,9 @@ class Recollect(BaseApi):
 
 
     @typing.overload
-    def recollect(
+    def memorize(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
+        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -311,9 +386,9 @@ class Recollect(BaseApi):
     ) -> api_client.ApiResponseWithoutDeserialization: ...
 
     @typing.overload
-    def recollect(
+    def memorize(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
+        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: str = ...,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -324,16 +399,16 @@ class Recollect(BaseApi):
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
-    def recollect(
+    def memorize(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
+        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: str = 'application/json',
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
-        return self._recollect_oapg(
+        return self._memorize_oapg(
             body=body,
             content_type=content_type,
             accept_content_types=accept_content_types,
@@ -349,7 +424,7 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
+        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: typing_extensions.Literal["application/json"] = ...,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -362,7 +437,7 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
+        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: str = ...,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -376,7 +451,7 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
+        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -387,7 +462,7 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
+        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: str = ...,
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -400,14 +475,14 @@ class ApiForpost(BaseApi):
 
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, ],
+        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
         content_type: str = 'application/json',
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
-        return self._recollect_oapg(
+        return self._memorize_oapg(
             body=body,
             content_type=content_type,
             accept_content_types=accept_content_types,

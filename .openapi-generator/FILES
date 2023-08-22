@@ -1,6 +1,7 @@
 .gitignore
 .gitlab-ci.yml
 .travis.yml
+README.md
 docs/apis/tags/DpApi.md
 docs/models/Citation.md
 docs/models/CitedDocument.md

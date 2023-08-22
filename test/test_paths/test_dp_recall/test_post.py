@@ -12,16 +12,16 @@ from unittest.mock import patch
 import urllib3
 
 import memas_client
-from memas_client.paths.dp_recollect import post  # noqa: E501
+from memas_client.paths.dp_recall import post  # noqa: E501
 from memas_client import configuration, schemas, api_client
 
 from .. import ApiTestMixin
 
 
-class TestDpRecollect(ApiTestMixin, unittest.TestCase):
+class TestDpRecall(ApiTestMixin, unittest.TestCase):
     """
-    DpRecollect unit test stubs
-        Recollects  # noqa: E501
+    DpRecall unit test stubs
+        Recalls information  # noqa: E501
     """
     _configuration = configuration.Configuration()
 

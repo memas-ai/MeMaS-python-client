@@ -6,5 +6,5 @@ import enum
 
 
 class PathValues(str, enum.Enum):
-    DP_REMEMBER = "/dp/remember"
-    DP_RECOLLECT = "/dp/recollect"
+    DP_MEMORIZE = "/dp/memorize"
+    DP_RECALL = "/dp/recall"
