@@ -163,7 +163,7 @@ with memas_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     body = dict(
         clue="What's the weather?",
-        corpus_pathname="memas:wikipedia",
+        namespace_pathname="memas.chatbot.persona1",
     )
     try:
         # Recalls information
@@ -198,7 +198,7 @@ dict, frozendict.frozendict,  | frozendict.frozendict,  |  |
 Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
 **clue** | str,  | str,  |  | 
-**corpus_pathname** | str,  | str,  | Full name of a corpus, specifying which namespace the corpus is under.  The name takes on the format of \\\&quot;&lt;namespace_pathname&gt;:&lt;corpus_name&gt;\\\&quot; | 
+**namespace_pathname** | str,  | str,  | Full namespace name, where child namespaces are appended after their parents&#x27; names with &#x27;.&#x27; | 
 **any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 ### Return Types, Responses

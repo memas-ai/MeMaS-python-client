@@ -38,30 +38,30 @@ class SchemaForRequestBodyApplicationJson(
     class MetaOapg:
         required = {
             "clue",
-            "corpus_pathname",
+            "namespace_pathname",
         }
         
         class properties:
             clue = schemas.StrSchema
-            corpus_pathname = schemas.StrSchema
+            namespace_pathname = schemas.StrSchema
             __annotations__ = {
                 "clue": clue,
-                "corpus_pathname": corpus_pathname,
+                "namespace_pathname": namespace_pathname,
             }
     
     clue: MetaOapg.properties.clue
-    corpus_pathname: MetaOapg.properties.corpus_pathname
+    namespace_pathname: MetaOapg.properties.namespace_pathname
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["clue"]) -> MetaOapg.properties.clue: ...
     
     @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["corpus_pathname"]) -> MetaOapg.properties.corpus_pathname: ...
+    def __getitem__(self, name: typing_extensions.Literal["namespace_pathname"]) -> MetaOapg.properties.namespace_pathname: ...
     
     @typing.overload
     def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
     
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["clue", "corpus_pathname", ], str]):
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["clue", "namespace_pathname", ], str]):
         # dict_instance[name] accessor
         return super().__getitem__(name)
     
@@ -70,12 +70,12 @@ class SchemaForRequestBodyApplicationJson(
     def get_item_oapg(self, name: typing_extensions.Literal["clue"]) -> MetaOapg.properties.clue: ...
     
     @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["corpus_pathname"]) -> MetaOapg.properties.corpus_pathname: ...
+    def get_item_oapg(self, name: typing_extensions.Literal["namespace_pathname"]) -> MetaOapg.properties.namespace_pathname: ...
     
     @typing.overload
     def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
     
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["clue", "corpus_pathname", ], str]):
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["clue", "namespace_pathname", ], str]):
         return super().get_item_oapg(name)
     
 
@@ -83,7 +83,7 @@ class SchemaForRequestBodyApplicationJson(
         cls,
         *_args: typing.Union[dict, frozendict.frozendict, ],
         clue: typing.Union[MetaOapg.properties.clue, str, ],
-        corpus_pathname: typing.Union[MetaOapg.properties.corpus_pathname, str, ],
+        namespace_pathname: typing.Union[MetaOapg.properties.namespace_pathname, str, ],
         _configuration: typing.Optional[schemas.Configuration] = None,
         **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
     ) -> 'SchemaForRequestBodyApplicationJson':
@@ -91,7 +91,7 @@ class SchemaForRequestBodyApplicationJson(
             cls,
             *_args,
             clue=clue,
-            corpus_pathname=corpus_pathname,
+            namespace_pathname=namespace_pathname,
             _configuration=_configuration,
             **kwargs,
         )

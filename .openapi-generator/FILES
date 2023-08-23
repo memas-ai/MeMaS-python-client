@@ -1,11 +1,11 @@
 .gitignore
 .gitlab-ci.yml
 .travis.yml
-README.md
 docs/apis/tags/DpApi.md
 docs/models/Citation.md
 docs/models/CitedDocument.md
 docs/models/CorpusPathname.md
+docs/models/NamespacePathname.md
 git_push.sh
 memas_client/__init__.py
 memas_client/api_client.py
@@ -20,10 +20,13 @@ memas_client/model/cited_document.py
 memas_client/model/cited_document.pyi
 memas_client/model/corpus_pathname.py
 memas_client/model/corpus_pathname.pyi
+memas_client/model/namespace_pathname.py
+memas_client/model/namespace_pathname.pyi
 memas_client/models/__init__.py
 memas_client/rest.py
 memas_client/schemas.py
 test-requirements.txt
 test/__init__.py
 test/test_models/__init__.py
+test/test_models/test_namespace_pathname.py
 tox.ini
