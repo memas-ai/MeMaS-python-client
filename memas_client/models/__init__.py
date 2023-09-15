@@ -14,4 +14,6 @@
 from memas_client.model.citation import Citation
 from memas_client.model.cited_document import CitedDocument
 from memas_client.model.corpus_pathname import CorpusPathname
+from memas_client.model.namespace_does_not_exist_error import NamespaceDoesNotExistError
+from memas_client.model.namespace_illegal_name_error import NamespaceIllegalNameError
 from memas_client.model.namespace_pathname import NamespacePathname
