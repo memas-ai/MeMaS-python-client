@@ -6,7 +6,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**memorize**](#memorize) | **post** /dp/memorize | Memorize information
-[**recall**](#recall) | **post** /dp/recall | Recalls information
+[**recall**](#recall) | **get** /dp/recall | Recalls information
 
 # **memorize**
 <a id="memorize"></a>

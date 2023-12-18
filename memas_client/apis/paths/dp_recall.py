@@ -1,7 +1,7 @@
-from memas_client.paths.dp_recall.post import ApiForpost
+from memas_client.paths.dp_recall.get import ApiForget
 
 
 class DpRecall(
-    ApiForpost,
+    ApiForget,
 ):
     pass
